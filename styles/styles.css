@@ -499,7 +499,7 @@ span {
 
 @media screen and (max-width: 660px) {
   input {
-    width: 92%;
+    width: auto;
   }
   .content-group-container {
     width: 290px;
