@@ -266,9 +266,7 @@ grupoUm.addEventListener("change", () => {
     ) {
       barraLoading1.style.backgroundColor = "#16b743";
       grupoDois.style.display = "flex";
-      setTimeout(() => {
-        empresa.scrollIntoView({ behavior: "smooth" });
-      });
+      empresa.scrollIntoView({ behavior: "smooth" });
     } else {
       grupoDois.style.display = "none";
       barraLoading1.style.backgroundColor = "transparent";
