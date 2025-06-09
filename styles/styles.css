@@ -73,7 +73,7 @@ input::placeholder {
 
 .form-wrapper {
   height: 300px;
-  overflow: auto;
+  overflow-y: auto;
   scrollbar-width: none;
 }
 
