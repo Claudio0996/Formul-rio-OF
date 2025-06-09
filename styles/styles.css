@@ -519,12 +519,17 @@ span {
   }
 
   .form-container {
-    width: 80%;
+    width: 60%;
   }
 
   .form-title {
     width: auto;
     font-size: 1.125rem;
+  }
+
+  .option img {
+    width: 20px;
+    height: 20px;
   }
 
   .carrosel {
