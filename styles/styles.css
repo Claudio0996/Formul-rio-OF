@@ -75,6 +75,7 @@ input::placeholder {
   height: 300px;
   overflow-y: auto;
   scrollbar-width: none;
+  width: 100%;
 }
 
 .form-title {
@@ -501,6 +502,10 @@ span {
   input {
     width: auto;
   }
+
+  input::placeholder {
+    font-size: 12px;
+  }
   .content-group-container {
     width: 290px;
   }
@@ -511,32 +516,45 @@ span {
   }
   .info-container {
     width: 290px;
+    text-align: center;
+  }
+
+  .info-container img {
+    width: 70%;
   }
 
   .form-attention,
   .content-title {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 
   .form-container {
-    width: 60%;
+    width: auto;
   }
 
   .form-title {
-    width: auto;
+    width: max-content;
     font-size: 1.125rem;
   }
 
+  option,
+  select {
+    font-size: 12px;
+  }
   .option img {
     width: 20px;
     height: 20px;
+  }
+
+  .combo-select::after {
+    left: 85%;
   }
 
   .carrosel {
     width: 200px;
   }
   .rodape {
-    top: 42%;
+    top: 46%;
     bottom: auto;
   }
 

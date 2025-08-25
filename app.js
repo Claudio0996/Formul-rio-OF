@@ -51,9 +51,7 @@ const body = {
   event_family: "CDP",
   payload: {
     conversion_identifier: "Teste",
-    legal_bases: [
-      { category: "communications", type: "consent", status: "granted" },
-    ],
+    legal_bases: [{ category: "communications", type: "consent", status: "granted" }],
     traffic_source: "ig-dm",
     traffic_medium: "ppc",
     traffic_campaign: "workshop-maio",
@@ -162,12 +160,7 @@ function construirCamposFormulario(elementoPai, elementoFilho) {
 }
 
 nome.addEventListener("input", (e) => {
-  if (
-    validarString(
-      e.target.value,
-      /^([A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]+)(\s(de|da|do|dos|das|[A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]+))*$/
-    )
-  ) {
+  if (validarString(e.target.value, /^([A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]+)(\s(de|da|do|dos|das|[A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]+))*$/)) {
     e.target.style.border = "1px solid green";
     nomeValidado = 1;
   } else {
@@ -187,13 +180,7 @@ numero.addEventListener("input", (e) => {
 });
 
 email.addEventListener("input", (e) => {
-  if (
-    validarString(
-      e.target.value,
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/
-    ) &&
-    !validarString(email.value, /^[^\s]+@orcafascio\.com$/)
-  ) {
+  if (validarString(e.target.value, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/) && !validarString(email.value, /^[^\s]+@orcafascio\.com$/)) {
     e.target.style.border = "1px solid green";
     emailValidado = 1;
   } else {
@@ -203,10 +190,7 @@ email.addEventListener("input", (e) => {
 });
 
 tipo_telefone.addEventListener("click", (e) => {
-  if (
-    !isOpen &&
-    (e.currentTarget == e.target || e.currentTarget == e.target.parentElement)
-  ) {
+  if (!isOpen && (e.currentTarget == e.target || e.currentTarget == e.target.parentElement)) {
     console.log(e.target);
     isOpen = 1;
     container_tipos.style.display = "block";
@@ -227,10 +211,8 @@ flags.forEach((item) => {
     let auxValue = tipo_telefone.firstElementChild.dataset.value;
 
     tipo_telefone.firstElementChild.src = item.firstElementChild.src;
-    tipo_telefone.firstElementChild.dataset.id =
-      item.firstElementChild.dataset.id;
-    tipo_telefone.firstElementChild.dataset.value =
-      item.firstElementChild.dataset.value;
+    tipo_telefone.firstElementChild.dataset.id = item.firstElementChild.dataset.id;
+    tipo_telefone.firstElementChild.dataset.value = item.firstElementChild.dataset.value;
 
     item.firstElementChild.src = auxLink;
     item.firstElementChild.dataset.id = auxData;
@@ -242,13 +224,7 @@ flags.forEach((item) => {
 });
 
 document.addEventListener("click", (event) => {
-  if (
-    event.target != container_tipos &&
-    event.target != tipo_telefone &&
-    event.target != tipo_telefone.firstElementChild &&
-    event.target != tipo_telefone.lastElementChild &&
-    isOpen
-  ) {
+  if (event.target != container_tipos && event.target != tipo_telefone && event.target != tipo_telefone.firstElementChild && event.target != tipo_telefone.lastElementChild && isOpen) {
     container_tipos.style.display = "none";
     isOpen = 0;
     tipo_telefone.style.backgroundColor = "var(--input-flag-color)";
@@ -258,12 +234,7 @@ document.addEventListener("click", (event) => {
 
 grupoUm.addEventListener("change", () => {
   if (nomeValidado && numeroValidado && emailValidado) {
-    if (
-      nome.value != "" &&
-      numero.value != "" &&
-      email.value != "" &&
-      tipo.value != ""
-    ) {
+    if (nome.value != "" && numero.value != "" && email.value != "" && tipo.value != "") {
       barraLoading1.style.backgroundColor = "#16b743";
       grupoDois.style.display = "flex";
       empresa.scrollIntoView({ behavior: "smooth" });
@@ -296,155 +267,24 @@ tipo.addEventListener("change", function (e) {
   limparElemento(camposDinamicos);
   switch (e.target.value) {
     case "Profissional Liberal":
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe se trabalha com licitações",
-          "trabalha_com_licitacoes",
-          "100%",
-          "Sim",
-          "Nao"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe se elabora Projetos",
-          "elabora_projetos",
-          "100%",
-          "Sim",
-          "Nao"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Como você gostaria de ser Contatado",
-          "contactar_atraves",
-          "100%",
-          "Telefone",
-          "WhatsApp",
-          "E-mail"
-        )
-      );
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe se trabalha com licitações", "trabalha_com_licitacoes", "100%", "Sim", "Nao"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe se elabora Projetos", "elabora_projetos", "100%", "Sim", "Nao"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Como você gostaria de ser Contatado", "contactar_atraves", "100%", "Telefone", "WhatsApp", "E-mail"));
       break;
     case "Órgão Público":
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe seu Cargo na empresa",
-          "cargo",
-          "100%",
-          "Socio/CEO/Proprietário",
-          "Diretor/Gerente",
-          "Supervisor/Coordenador",
-          "Analista",
-          "Estagiario"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe a esfera de atuação do Orgao",
-          "esfera",
-          "100%",
-          "Federal",
-          "Municipal",
-          "Estadual",
-          "Autarquia",
-          "Estatal"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Como você gostaria de ser Contatado",
-          "contactar_atraves",
-          "100%",
-          "Telefone",
-          "WhatsApp",
-          "E-mail"
-        )
-      );
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe seu Cargo na empresa", "cargo", "100%", "Socio/CEO/Proprietário", "Diretor/Gerente", "Supervisor/Coordenador", "Analista", "Estagiario"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe a esfera de atuação do Orgao", "esfera", "100%", "Federal", "Municipal", "Estadual", "Autarquia", "Estatal"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Como você gostaria de ser Contatado", "contactar_atraves", "100%", "Telefone", "WhatsApp", "E-mail"));
       break;
     case "Empresa":
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe seu segmento de atuação",
-          "atuacao",
-          "100%",
-          "Construtora",
-          "Incorporadora",
-          "Escritório de Arquitetura",
-          "Escritório de Projetos"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe seu Cargo na empresa",
-          "cargo",
-          "100%",
-          "Socio/CEO/Proprietário",
-          "Diretor/Gerente",
-          "Supervisor/Coordenador",
-          "Analista",
-          "Estagiario"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Informe sua profissão",
-          "Engenheiro Civil",
-          "100%",
-          "Engenheiro Eletricista",
-          "Engenheiro Orçamentista",
-          "Hidráulico",
-          "Engenheiro Estrutural",
-          "Técnico em Edificações",
-          "Arquiteto",
-          "Arquiteto Orçamentista",
-          "Financeiro ou Administrativo",
-          "Profissional de TI"
-        )
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new SelectObject(
-          "select",
-          "Como você gostaria de ser Contatado",
-          "contactar_atraves",
-          "100%",
-          "Telefone",
-          "WhatsApp",
-          "E-mail"
-        )
-      );
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe seu segmento de atuação", "atuacao", "100%", "Construtora", "Incorporadora", "Escritório de Arquitetura", "Escritório de Projetos"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe seu Cargo na empresa", "cargo", "100%", "Socio/CEO/Proprietário", "Diretor/Gerente", "Supervisor/Coordenador", "Analista", "Estagiario"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Informe sua profissão", "Engenheiro Civil", "100%", "Engenheiro Eletricista", "Engenheiro Orçamentista", "Hidráulico", "Engenheiro Estrutural", "Técnico em Edificações", "Arquiteto", "Arquiteto Orçamentista", "Financeiro ou Administrativo", "Profissional de TI"));
+      construirCamposFormulario(camposDinamicos, new SelectObject("select", "Como você gostaria de ser Contatado", "contactar_atraves", "100%", "Telefone", "WhatsApp", "E-mail"));
       break;
     case "Estudante":
-      construirCamposFormulario(
-        camposDinamicos,
-        new InputObject("input", "nome_do_curso", "Informe o nome do seu curso")
-      );
-      construirCamposFormulario(
-        camposDinamicos,
-        new InputObject(
-          "input",
-          "nome_do_da_instituicao",
-          "Informe o nome da instituição de ensino"
-        )
-      );
+      construirCamposFormulario(camposDinamicos, new InputObject("input", "nome_do_curso", "Informe o nome do seu curso"));
+      construirCamposFormulario(camposDinamicos, new InputObject("input", "nome_do_da_instituicao", "Informe o nome da instituição de ensino"));
       break;
   }
 });
@@ -461,12 +301,8 @@ grupoDois.addEventListener("change", (e) => {
   const inputs = document.querySelectorAll("div.grupo-2 input");
   const selects = document.querySelectorAll(".grupo-2 select");
 
-  let inputsActive = Array.from(inputs).every((input) =>
-    input.dataset.preenchido == "true" ? 1 : 0
-  );
-  let selectAtive = Array.from(selects).every((select) =>
-    select.dataset.preenchido == "true" ? 1 : 0
-  );
+  let inputsActive = Array.from(inputs).every((input) => (input.dataset.preenchido == "true" ? 1 : 0));
+  let selectAtive = Array.from(selects).every((select) => (select.dataset.preenchido == "true" ? 1 : 0));
 
   if (inputsActive && selectAtive && !formPreenchido) {
     barraLoading2.style.backgroundColor = "#16b743";
@@ -532,9 +368,7 @@ botaoAvancar.addEventListener("click", () => {
 });
 
 senha.addEventListener("input", (e) => {
-  if (
-    validarString(e.target.value, /^(?=.*[A-Z])(?=.*\d)(?=.*[@_\-]).{8,16}$/)
-  ) {
+  if (validarString(e.target.value, /^(?=.*[A-Z])(?=.*\d)(?=.*[@_\-]).{8,16}$/)) {
     e.target.style.border = "1px solid green";
   } else {
     e.target.style.border = "1px solid red";
@@ -553,14 +387,16 @@ form.addEventListener("submit", (e) => {
   console.log(options);
   e.preventDefault();
   options.body = JSON.stringify(body);
-  console.log(options);
-  fetch(
-    "https://api.rd.services/platform/conversions?api_key=fJvYiAJejEVotlaaCThpBqaowGNcdtEEyCVA",
-    options
-  )
+  fetch("https://api.rd.services/platform/conversions?api_key=fJvYiAJejEVotlaaCThpBqaowGNcdtEEyCVA", options)
     .then((res) => res.json())
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
+});
+
+form.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    e.preventDefault();
+  }
 });
 
 animateCarrousel();
